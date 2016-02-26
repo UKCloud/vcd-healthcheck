@@ -101,6 +101,7 @@ func main() {
   var User string = ""
   var maskedPassword []byte 
   var Org string = ""
+  var VERSION = "dev"
 
   reader := bufio.NewReader(os.Stdin)
   if os.Getenv("VCLOUD_USERNAME") == "" {
@@ -117,6 +118,8 @@ func main() {
     fmt.Print("Enter your Organisation ID: ")
     Org, _ = reader.ReadString('\n')
   }
+
+  fmt.Printf("Skyscape Cloud Service vCloud Healthcheck (v %s)\n", VERSION)
 
   config := Config{
         User:     strings.TrimSpace(User),
