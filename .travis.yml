@@ -15,5 +15,4 @@ install:
 - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && goxc bump && goxc -t -bc="linux,!arm windows,386 darwin"
   || false'
 before_install:
-- openssl aes-256-cbc -K $encrypted_7965e39eaaca_key -iv $encrypted_7965e39eaaca_iv
-  -in .goxc.local.json.enc -out .goxc.local.json -d
+- openssl aes-256-cbc -K $encrypted_7965e39eaaca_key -iv $encrypted_7965e39eaaca_iv -in .goxc.local.json.enc -out .goxc.local.json -d
