@@ -1,6 +1,8 @@
 # vCloud Director Healthcheck
 This is a collection of scripts intended to be run again a vCloud Director VDC and provide feedback and recommendations for any mis-configured or non-optimal configurations.
 
+[![Build Status](https://travis-ci.org/skyscape-cloud-services/vcd-healthcheck.svg?branch=master)](https://travis-ci.org/skyscape-cloud-services/vcd-healthcheck)
+
 ## Installation
 Download the latest release of the healthcheck from GitHub.
 
