@@ -13,19 +13,20 @@ echo "Ensuring code quality"
 go vet ./...
 golint ./...
 go test -v -check.v ./...
+go build
 
-for GOOS in $OS; do
-    for GOARCH in $ARCH; do
-        arch="$GOOS-$GOARCH"
-        binary="bin/vcd-healthcheck.$arch"
-        echo "Building $binary"
-        GOOS=$GOOS GOARCH=$GOARCH go build -o $binary
-    done
-done
+# for GOOS in $OS; do
+#     for GOARCH in $ARCH; do
+#         arch="$GOOS-$GOARCH"
+#         binary="bin/vcd-healthcheck.$arch"
+#         echo "Building $binary"
+#         GOOS=$GOOS GOARCH=$GOARCH go build -o $binary
+#     done
+# done
 
 if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
 	go get github.com/laher/goxc
-	goxc -t
+	goxc -t -arch=amd64 -bc="linux windows"
 	goxc bump
-	goxc
+	goxc -arch=amd64 -bc="linux windows"
 fi
