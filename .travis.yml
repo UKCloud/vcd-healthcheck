@@ -1,15 +1,8 @@
 language: go
 script:
-- go vet ./...
-- golint ./...
-- go test -v -check.v ./...
-- go build
-- '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && goxc || false'
+- ./build.sh
 install:
 - git clone -b query_api --single-branch https://github.com/skyscape-cloud-services/vmware-govcd.git $GOPATH/src/github.com/hmrc/vmware-govcd
-- go get github.com/laher/goxc
-- go get -u github.com/golang/lint/golint
 - go get -t ./...
-- '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && goxc bump && goxc -t || false'
 before_install:
 - openssl aes-256-cbc -K $encrypted_0e4f057339d2_key -iv $encrypted_0e4f057339d2_iv -in .goxc.local.json.enc -out .goxc.local.json -d
