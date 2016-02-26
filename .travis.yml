@@ -1,8 +1,11 @@
 language: go
 
-script: go test -v -check.v ./...
+script: 
+  - go vet ./...
+  - golint ./...
+  - go test -v -check.v ./...
 
 install:
   - git clone -b query_api --single-branch https://github.com/skyscape-cloud-services/vmware-govcd.git $GOPATH/src/github.com/hmrc/vmware-govcd
   - go get github.com/laher/goxc
-  
+  - go get -u github.com/golang/lint/golint
