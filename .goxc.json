@@ -1,8 +1,9 @@
 {
 	"Tasks": [
-		"default",
-		"publish-github"
+		"xc",
 	],
+	"Arch": "amd64",
+    "BuildConstraints": "linux windows",
 	"PackageVersion": "0.0.2",
 	"TaskSettings": {
 		"publish-github": {

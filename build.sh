@@ -26,7 +26,7 @@ go build
 
 if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
 	go get github.com/laher/goxc
-	goxc -t -arch=amd64 -bc="linux windows"
+	goxc -t 
 	goxc bump
-	goxc -arch=amd64 -bc="linux windows"
+	goxc
 fi
