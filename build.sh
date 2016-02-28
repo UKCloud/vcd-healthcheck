@@ -15,18 +15,18 @@ golint ./...
 go test -v -check.v ./...
 go build
 
-# for GOOS in $OS; do
-#     for GOARCH in $ARCH; do
-#         arch="$GOOS-$GOARCH"
-#         binary="bin/vcd-healthcheck.$arch"
-#         echo "Building $binary"
-#         GOOS=$GOOS GOARCH=$GOARCH go build -o $binary
-#     done
-# done
 
 if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
-	go get github.com/laher/goxc
-	goxc -t 
-	goxc bump
-	goxc
+	# go get github.com/laher/goxc
+	# goxc -t 
+	# goxc bump
+	# goxc
+	for GOOS in $OS; do
+	    for GOARCH in $ARCH; do
+	        arch="$GOOS-$GOARCH"
+	        binary="bin/vcd-healthcheck.$arch"
+	        echo "Building $binary"
+	        GOOS=$GOOS GOARCH=$GOARCH go build -o $binary
+	    done
+	done
 fi
