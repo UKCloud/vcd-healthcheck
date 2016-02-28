@@ -19,4 +19,4 @@ deploy:
   - bin/vcd-healthcheck.linux-amd64
   - bin/vcd-healthcheck.windows-amd64
   on:
-    repo: skyscape-cloud-services/vcd-healthcheck
+    tags: true
