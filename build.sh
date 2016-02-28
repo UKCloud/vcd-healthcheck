@@ -30,3 +30,6 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
 	    done
 	done
 fi
+pwd
+set
+ls -lrta
