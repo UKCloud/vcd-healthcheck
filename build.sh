@@ -32,4 +32,4 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
 fi
 pwd
 set
-ls -lRa
+ls -lR

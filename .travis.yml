@@ -11,6 +11,7 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_0e4f057339d2_key -iv $encrypted_0e4f057339d2_iv
   -in .goxc.local.json.enc -out .goxc.local.json -d
 deploy:
+  skip_cleanup: true
   provider: releases
   api_key:
     secure: u4P/EosurXSWkdMP9UYk57nc1pP8KAn/a3Au+bImBY0CyvN8AVR2gpoSc8zf5yp0CjkdkkzlUzxK1DtEi8Gj06Oyb6iXeZBIA6Zc1xLD8LSIz+D6TYkjZUgL0TB9Dbwtt7M1VZEOtb3L5X/+vhOBzwrt8N54RKeo28Wdow1WbBnPI6f+pjCdG6WuVE903SUM0BCxrZpvfuRa0AbdSi6+vBaw+WBMg9fYfzbmGnNDBpqu8ohst1k6op8csJ+/1I6a3EIkJ/KHmhxeyQ15MaaQ4vOZCIzYsV3NgqKfwOPK8AwVj+AwJTN9yhowAh4S6jdNYInLJMS11cD3ZnNEQ8qwHCVixFLKA1lAZj4aadu5w5b9P2e0sDvwvNbQQh9SH1vgTZOi6o0zCvQA97NpzDV3KjyjjTyTQ+n9nninuZo64eQw6g/fRXx3fYc7QqIgNfFQHYusQVX2qFb8pBq6SIR9LA8eDAGw35vej/BFsW7vyGMykUrN5PicdadFEZvfr/JRc5eIAxEBzM7s57DE04xR75KWIVwfBplrLVLnqCgdJslUCIEm15sDAZ6br4/D03KasYDP9KSW099YzWkUYTIWNp+Vw5sfOGPHl/HVLO5i2hPpUGHib5xInFQvk6es/3GqGydN+mwhCAmQ51TF89LEUsPucBxTm1yV+PCxQU0vdcA=
