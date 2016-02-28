@@ -1,6 +1,6 @@
 {
 	"Tasks": [
-		"xc",
+		"xc"
 	],
 	"Arch": "amd64",
     "BuildConstraints": "linux windows",
