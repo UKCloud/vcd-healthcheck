@@ -13,7 +13,7 @@ echo "Ensuring code quality"
 go vet ./...
 golint ./...
 go test -v -check.v ./...
-go build
+go build -ldflags "-x main.version $(git describe --tags)"
 
 
 for GOOS in $OS; do
@@ -21,7 +21,7 @@ for GOOS in $OS; do
         arch="$GOOS-$GOARCH"
         binary="bin/vcd-healthcheck.$arch"
         echo "Building $binary"
-        GOOS=$GOOS GOARCH=$GOARCH go build -o $binary
+        GOOS=$GOOS GOARCH=$GOARCH go build -o $binary -ldflags "-x main.VERSION $(git describe --tags)"
     done
 done
 

@@ -10,12 +10,14 @@ import (
 
     "github.com/hmrc/vmware-govcd"
     "github.com/howeyc/gopass"
-    // "github.com/davecgh/go-spew/spew"
     "github.com/olekukonko/tablewriter"
-    "github.com/fatih/color"
+    // "github.com/fatih/color"
     types "github.com/hmrc/vmware-govcd/types/v56"
 )
 
+  var VERSION string
+
+// Configuration details for connecting to vCloud Director
 type Config struct {
     User     string
     Password string
@@ -25,6 +27,7 @@ type Config struct {
     Insecure bool
 }
 
+// Create a vCloud client connection using the govcd library
 func (c *Config) Client() (*govcd.VCDClient, error) {
     u, err := url.ParseRequestURI(c.Href)
     if err != nil {
@@ -47,7 +50,7 @@ func CheckVM(client *govcd.VCDClient, s types.QueryResultVMRecordType) ([]string
   }
 
   ReturnRow := false
-  red := color.New(color.FgRed).SprintFunc()
+  // red := color.New(color.FgRed).SprintFunc()
 
   VM, err := client.FindVMByHREF(s.HREF)
   if err != nil {
@@ -56,7 +59,7 @@ func CheckVM(client *govcd.VCDClient, s types.QueryResultVMRecordType) ([]string
 
   HWVersion := fmt.Sprintf("%d", s.HardwareVersion)
   if s.HardwareVersion != 9 { 
-    HWVersion = red(HWVersion)
+    // HWVersion = red(HWVersion)
     ReturnRow = true
   }
 
@@ -67,7 +70,7 @@ func CheckVM(client *govcd.VCDClient, s types.QueryResultVMRecordType) ([]string
     }
   }
   if NetworkDevice != "VMXNET3" {
-    NetworkDevice = red(NetworkDevice)
+    // NetworkDevice = red(NetworkDevice)
     ReturnRow = true
   }
 
@@ -84,7 +87,7 @@ func CheckVM(client *govcd.VCDClient, s types.QueryResultVMRecordType) ([]string
   SnapshotString := fmt.Sprintf("%d", OldSnapshots)
 
   if OldSnapshots > 0 {
-    SnapshotString = red(SnapshotString)
+    // SnapshotString = red(SnapshotString)
     ReturnRow = true
   }
 
@@ -101,7 +104,6 @@ func main() {
   var User string = ""
   var maskedPassword []byte 
   var Org string = ""
-  var VERSION = "dev"
 
   reader := bufio.NewReader(os.Stdin)
   if os.Getenv("VCLOUD_USERNAME") == "" {
@@ -134,7 +136,6 @@ func main() {
       fmt.Println(err)
       os.Exit(1)
   }
-  // fmt.Printf("Org URL: %s\n", client.OrgHREF.String())
 
   results, err := client.Query(map[string]string{"type": "vm"})
   fmt.Printf("Found %d VMs ... processing\n", int(results.Results.Total))
@@ -154,7 +155,7 @@ func main() {
 
     if row != nil {
       table.Append(row)
-      TableRows += 1
+      TableRows++
     }
   }
 

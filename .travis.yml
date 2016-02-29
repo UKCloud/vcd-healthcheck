@@ -7,9 +7,6 @@ install:
 - git clone -b query_api --single-branch https://github.com/skyscape-cloud-services/vmware-govcd.git
   $GOPATH/src/github.com/hmrc/vmware-govcd
 - go get -t ./...
-before_install:
-- openssl aes-256-cbc -K $encrypted_0e4f057339d2_key -iv $encrypted_0e4f057339d2_iv
-  -in .goxc.local.json.enc -out .goxc.local.json -d
 deploy:
   skip_cleanup: true
   provider: releases
