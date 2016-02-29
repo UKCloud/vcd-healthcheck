@@ -15,9 +15,11 @@ import (
     types "github.com/hmrc/vmware-govcd/types/v56"
 )
 
-  var VERSION string
+// VERSION is set at build time by using the following: 
+// go build -ldflags "-X main.VERSION=$(git describe --tags)"
+var VERSION string
 
-// Configuration details for connecting to vCloud Director
+// Config details for connecting to vCloud Director
 type Config struct {
     User     string
     Password string
@@ -27,7 +29,7 @@ type Config struct {
     Insecure bool
 }
 
-// Create a vCloud client connection using the govcd library
+// Client connection using the govcd library
 func (c *Config) Client() (*govcd.VCDClient, error) {
     u, err := url.ParseRequestURI(c.Href)
     if err != nil {
@@ -44,6 +46,7 @@ func (c *Config) Client() (*govcd.VCDClient, error) {
     return vcdclient, nil
 }
 
+// CheckVM is called for each search result 
 func CheckVM(client *govcd.VCDClient, s types.QueryResultVMRecordType) ([]string, error) {
   if s.VAppTemplate == true {
     return nil, nil
@@ -78,10 +81,10 @@ func CheckVM(client *govcd.VCDClient, s types.QueryResultVMRecordType) ([]string
   OldSnapshots := 0
   // CurrentTime := time.now()
   for _, snapshot := range VM.VM.Snapshots.Snapshot {
-    SnapshotCount += 1
+    SnapshotCount++
     Created, _ :=time.Parse("RFC3339", snapshot.Created)
     if time.Now().Sub(Created).Hours() > (7 * 24) {
-      OldSnapshots += 1
+      OldSnapshots++
     }
   }
   SnapshotString := fmt.Sprintf("%d", OldSnapshots)
@@ -93,17 +96,17 @@ func CheckVM(client *govcd.VCDClient, s types.QueryResultVMRecordType) ([]string
 
   if ReturnRow == true {
     return []string{s.Name, HWVersion, NetworkDevice, SnapshotString}, nil
-  } else {
-    return nil, nil
-  }
+  } 
+
+  return nil, nil
 }
 
 
 func main() {
 
-  var User string = ""
+  var User string
   var maskedPassword []byte 
-  var Org string = ""
+  var Org string
 
   reader := bufio.NewReader(os.Stdin)
   if os.Getenv("VCLOUD_USERNAME") == "" {
@@ -121,14 +124,14 @@ func main() {
     Org, _ = reader.ReadString('\n')
   }
 
-  fmt.Printf("Skyscape Cloud Service vCloud Healthcheck (v %s)\n", VERSION)
+  fmt.Printf("Skyscape Cloud Service vCloud Healthcheck (%s)\n", VERSION)
 
   config := Config{
         User:     strings.TrimSpace(User),
         Password: strings.TrimSpace(string(maskedPassword)),
         Org:      strings.TrimSpace(Org),
         Href:     "https://api.vcd.portal.skyscapecloud.com/api",
-        VDC:      "DevOps Demo Env (IL2-TRIAL-BASIC)",
+        VDC:      "",
     }
 
   client, err := config.Client() // We now have a client
