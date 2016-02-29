@@ -1,4 +1,14 @@
-## 0.1.0 (Unreleased)
+## 0.1.1 (February 29, 2016)
+
+FEATURES:
+
+IMPROVEMENTS:
+
+BUG FIXES:
+
+  * Temporarily referencing skyscape's fork of the vmware-govcd library until hmrc/vmware-govcd#5 is merged.
+
+## 0.1.0 (February 29, 2016)
 
 FEATURES:
 
