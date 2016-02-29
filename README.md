@@ -1,10 +1,10 @@
 # vCloud Director Healthcheck
-This is a collection of scripts intended to be run again a vCloud Director VDC and provide feedback and recommendations for any mis-configured or non-optimal configurations.
+This is a healthcheck script intended to be run against Skyscape's vCloud Director and provide feedback on any mis-configured or non-optimal configurations.
 
 [![Build Status](https://travis-ci.org/skyscape-cloud-services/vcd-healthcheck.svg?branch=master)](https://travis-ci.org/skyscape-cloud-services/vcd-healthcheck)
 
 ## Installation
-Download the latest release of the healthcheck from GitHub.
+Download the [latest release](https://github.com/skyscape-cloud-services/vcd-healthcheck/releases) of the healthcheck from GitHub. Release binaries are provided for you to download for both Windows and Linux. If you require other platforms, you can retrieve the source and compile for yourself.
 
 ## Usage
 Run the command:
@@ -21,6 +21,11 @@ VCLOUD_USERNAME=1111.1.111111
 VCLOUD_PASSWORD=VerySecret
 VCLOUD_ORG=1-1-11-111111
 ```
+## About the Checks
+The healthcheck script will search for all VMs accessible to the user account you specify. For each VM found by the search, the following checks are performed. If any VMs do not meet the recommendations, its details will be listed. If all of the VMs meet the recommendations, nothing will be output.
+* Check that the VM's hardware version is 9.
+* Check that the VM's Network Device is VMXNET3.
+* Check that there are no VM Snapshots older than 7 days.
 
 License and Authors
 -------------------
