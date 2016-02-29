@@ -8,7 +8,7 @@ import (
     "strings"
     "time"
 
-    "github.com/hmrc/vmware-govcd"
+    "github.com/skyscape-cloud-services/vmware-govcd"
     "github.com/howeyc/gopass"
     "github.com/olekukonko/tablewriter"
     // "github.com/fatih/color"
