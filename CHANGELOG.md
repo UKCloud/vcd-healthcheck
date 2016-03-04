@@ -1,3 +1,13 @@
+## 0.1.2 (March 4, 2016)
+
+FEATURES:
+
+IMPROVEMENTS:
+
+  * Bundle released binaries in zip / tar archives.
+
+BUG FIXES:
+
 ## 0.1.1 (February 29, 2016)
 
 FEATURES:
