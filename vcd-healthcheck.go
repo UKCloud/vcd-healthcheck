@@ -6,12 +6,12 @@ import (
     "net/url"
     "os"
     "strings"
-    "time"
 
     "github.com/skyscape-cloud-services/vmware-govcd"
     "github.com/howeyc/gopass"
     "github.com/olekukonko/tablewriter"
     // "github.com/fatih/color"
+    "github.com/skyscape-cloud-services/vcd-healthcheck/healthcheck"
     types "github.com/skyscape-cloud-services/vmware-govcd/types/v56"
 )
 
@@ -60,37 +60,18 @@ func CheckVM(client *govcd.VCDClient, s types.QueryResultVMRecordType) ([]string
       return nil, fmt.Errorf("Unable to load VM: %s", err)
   }
 
-  HWVersion := fmt.Sprintf("%d", s.HardwareVersion)
-  if s.HardwareVersion != 9 { 
-    // HWVersion = red(HWVersion)
+  HWVersion, err := healthcheck.HardwareVersion(s, VM.VM)
+  if err != nil {
     ReturnRow = true
   }
 
-  NetworkDevice := "Unknown"
-  for _,v := range VM.VM.VirtualHardwareSection.Item {
-    if v.ResourceType == 10 {
-      NetworkDevice = v.ResourceSubType
-    }
-  }
-  if NetworkDevice != "VMXNET3" {
-    // NetworkDevice = red(NetworkDevice)
+  NetworkDevice, err := healthcheck.NetworkDevice(s, VM.VM)
+  if err != nil {
     ReturnRow = true
   }
 
-  SnapshotCount := 0
-  OldSnapshots := 0
-  // CurrentTime := time.now()
-  for _, snapshot := range VM.VM.Snapshots.Snapshot {
-    SnapshotCount++
-    Created, _ :=time.Parse("RFC3339", snapshot.Created)
-    if time.Now().Sub(Created).Hours() > (7 * 24) {
-      OldSnapshots++
-    }
-  }
-  SnapshotString := fmt.Sprintf("%d", OldSnapshots)
-
-  if OldSnapshots > 0 {
-    // SnapshotString = red(SnapshotString)
+  SnapshotString, err := healthcheck.VMSnapshots(s, VM.VM)
+  if err != nil {
     ReturnRow = true
   }
 
