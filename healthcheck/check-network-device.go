@@ -5,18 +5,19 @@ import (
 	types "github.com/skyscape-cloud-services/vmware-govcd/types/v56"
 )
 
+// NetworkDevice checks that the device type is VMXNET3
 func NetworkDevice(s types.QueryResultVMRecordType, vm *types.VM) (string, error) {
 
-	device_type := "unknown"
+	deviceType := "unknown"
 
 	for _, v := range vm.VirtualHardwareSection.Item {
 		if v.ResourceType == 10 {
-			device_type = v.ResourceSubType
+			deviceType = v.ResourceSubType
 		}
 	}
-	if device_type != "VMXNET3" {
-		return device_type, fmt.Errorf("VMs NIC is: %s", device_type)
+	if deviceType != "VMXNET3" {
+		return deviceType, fmt.Errorf("VMs NIC is: %s", deviceType)
 	}
 
-	return device_type, nil
+	return deviceType, nil
 }

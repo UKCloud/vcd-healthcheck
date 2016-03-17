@@ -6,6 +6,7 @@ import (
 	types "github.com/skyscape-cloud-services/vmware-govcd/types/v56"
 )
 
+// VMSnapshots checks that the VM passed in does not have any snapshots older than 7 days
 func VMSnapshots(s types.QueryResultVMRecordType, vm *types.VM) (string, error) {
 
 	SnapshotCount := 0
