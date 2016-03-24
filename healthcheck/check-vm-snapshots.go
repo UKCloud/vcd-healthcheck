@@ -3,7 +3,7 @@ package healthcheck
 import (
 	"fmt"
 	"time"
-	types "github.com/skyscape-cloud-services/vmware-govcd/types/v56"
+	types "github.com/hmrc/vmware-govcd/types/v56"
 )
 
 // VMSnapshots checks that the VM passed in does not have any snapshots older than 7 days
