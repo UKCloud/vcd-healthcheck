@@ -1,3 +1,15 @@
+## 0.1.3 (March 24, 2016)
+
+FEATURES:
+
+IMPROVEMENTS:
+  * Refactored checks to use a modular library (#4)
+
+BUG FIXES:
+
+  * Fixed compile-time version string (#7)
+  * Revert to referencing hmrc/vmware-govcd now that hmrc/vmware-govcd#5 has been merged.
+
 ## 0.1.2 (March 4, 2016)
 
 FEATURES:
