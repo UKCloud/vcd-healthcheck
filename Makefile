@@ -20,6 +20,7 @@ ZIP_FILE_SUFFIX = zip
 TAR_CMD = tar zcvf
 TAR_FILE_SUFFIX = tar.gz
 
+GIT_TAG := $(shell git describe --tags)
 
 all: test bin dist
 
@@ -48,8 +49,9 @@ format:
 dist:	$(OS)
 
 $(OS): distdir	
-	@$(ECHO) "$(OK_COLOR)==> Building $@ Packages...$(NO_COLOR)"
+	@$(ECHO) "$(OK_COLOR)==> Building $@ Packages for $(GIT_TAG) ...$(NO_COLOR)"
 	$(eval BASEDIR = "$(PWD)")
+
 	$(foreach GOARCH,$(ARCH), \
 	    $(eval DISTARCH = "$@-$(GOARCH)") \
             $(eval BINARY = "vcd-healthcheck$(if $(findstring windows,$@),".exe","")") \
@@ -58,7 +60,7 @@ $(OS): distdir
 	    $(eval PKGSUFFIX = $($(PKG)_FILE_SUFFIX)) \
 	    \
             @$(ECHO) "$(OK_COLOR)Building $(BINARY) for $(DISTARCH)$(NO_COLOR)"; \
-            GOOS=$@ GOARCH=$(GOARCH) go build -o $(BINARY) -ldflags "-X main.VERSION=$(git describe --tags)"; \
+            GOOS=$@ GOARCH=$(GOARCH) go build -o $(BINARY) -ldflags "-X main.VERSION=$(GIT_TAG)"; \
 	    $(PKGCMD) dist/vcd-healthcheck.$(DISTARCH).$(PKGSUFFIX) $(BINARY) \
 	)
 
