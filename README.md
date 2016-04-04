@@ -2,7 +2,7 @@
 
 This is a healthcheck script intended to be run against Skyscape's vCloud Director and provide feedback on any mis-configured or non-optimal configurations.
 
-[![Latest Version](http://img.shields.io/github/release/skyscape-cloud-services/vcd-healthcheck.svg?style=flat-square)][release]
+[![Latest Version](http://img.shields.io/github/release/skyscape-cloud-services/vcd-healthcheck.svg?style=flat-square)](https://github.com/skyscape-cloud-services/vcd-healthcheck/releases)
 [![Build Status](https://travis-ci.org/skyscape-cloud-services/vcd-healthcheck.svg?branch=master)](https://travis-ci.org/skyscape-cloud-services/vcd-healthcheck)
 [![GoDoc](https://godoc.org/github.com/skyscape-cloud-services/vcd-healthcheck?status.svg)](https://godoc.org/github.com/skyscape-cloud-services/vcd-healthcheck)
 
