@@ -9,7 +9,7 @@ install:
 - go get github.com/mattn/goveralls
 script:
 - PATH="$HOME/gopath/bin:$PATH"
-- hack/coverage
+- hack/coverage --coveralls
 deploy:
   skip_cleanup: true
   provider: releases
