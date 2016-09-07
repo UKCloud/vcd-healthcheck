@@ -10,6 +10,7 @@ install:
 script:
 - PATH="$HOME/gopath/bin:$PATH"
 - hack/coverage --coveralls
+- make
 deploy:
   skip_cleanup: true
   provider: releases
