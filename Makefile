@@ -28,6 +28,7 @@ get-deps:
 	@$(ECHO) "$(OK_COLOR)==> Fetching dependencies$(NO_COLOR)"
 	go get -v ./...
 	go get -u github.com/golang/lint/golint
+	go get -u gopkg.in/check.v1
 	#go get -u golang.org/x/tools/cmd/vet
 
 test: get-deps
