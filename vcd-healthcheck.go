@@ -7,12 +7,12 @@ import (
     "os"
     "strings"
 
-    "github.com/hmrc/vmware-govcd"
+    "github.com/vmware/govcloudair"
     "github.com/howeyc/gopass"
     "github.com/olekukonko/tablewriter"
-    "github.com/skyscape-cloud-services/vcd-healthcheck/healthcheck"
+    "github.com/UKCloud/vcd-healthcheck/healthcheck"
 
-    types "github.com/hmrc/vmware-govcd/types/v56"
+    types "github.com/vmware/govcloudair/types/v56"
 )
 
 // VERSION is set at build time by using the following: 
@@ -30,13 +30,13 @@ type Config struct {
 }
 
 // Client connection using the govcd library
-func (c *Config) Client() (*govcd.VCDClient, error) {
+func (c *Config) Client() (*govcloudair.VCDClient, error) {
     u, err := url.ParseRequestURI(c.Href)
     if err != nil {
         return nil, fmt.Errorf("Unable to pass url: %s", err)
     }
 
-    vcdclient := govcd.NewVCDClient(*u, c.Insecure)
+    vcdclient := govcloudair.NewVCDClient(*u, c.Insecure)
     org, vcd, err := vcdclient.Authenticate(c.User, c.Password, c.Org, c.VDC)
     if err != nil {
         return nil, fmt.Errorf("Unable to authenticate: %s", err)
@@ -47,7 +47,7 @@ func (c *Config) Client() (*govcd.VCDClient, error) {
 }
 
 // CheckVM is called for each search result 
-func CheckVM(client *govcd.VCDClient, s types.QueryResultVMRecordType) ([]string, error) {
+func CheckVM(client *govcloudair.VCDClient, s types.QueryResultVMRecordType) ([]string, error) {
   if s.VAppTemplate == true {
     return nil, nil
   }
