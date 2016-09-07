@@ -2,7 +2,7 @@ package healthcheck
 
 import (
 	"fmt"
-	types "github.com/hmrc/vmware-govcd/types/v56"
+	types "github.com/vmware/govcloudair/types/v56"
 )
 
 // NetworkDevice checks that the device type is VMXNET3
