@@ -2,12 +2,12 @@
 
 This is a healthcheck script intended to be run against Skyscape's vCloud Director and provide feedback on any mis-configured or non-optimal configurations.
 
-[![Latest Version](http://img.shields.io/github/release/skyscape-cloud-services/vcd-healthcheck.svg?style=flat-square)](https://github.com/skyscape-cloud-services/vcd-healthcheck/releases)
-[![Build Status](https://travis-ci.org/skyscape-cloud-services/vcd-healthcheck.svg?branch=master)](https://travis-ci.org/skyscape-cloud-services/vcd-healthcheck)
-[![GoDoc](https://godoc.org/github.com/skyscape-cloud-services/vcd-healthcheck?status.svg)](https://godoc.org/github.com/skyscape-cloud-services/vcd-healthcheck)
+[![Latest Version](http://img.shields.io/github/release/UKCloud/vcd-healthcheck.svg?style=flat-square)](https://github.com/UKCloud/vcd-healthcheck/releases)
+[![Build Status](https://travis-ci.org/UKCloud/vcd-healthcheck.svg?branch=master)](https://travis-ci.org/UKCloud/vcd-healthcheck)
+[![GoDoc](https://godoc.org/github.com/UKCloud/vcd-healthcheck?status.svg)](https://godoc.org/github.com/UKCloud/vcd-healthcheck)
 
 ## Installation
-Download the [latest release](https://github.com/skyscape-cloud-services/vcd-healthcheck/releases) of the healthcheck from GitHub. Release binaries are provided for you to download for both Windows and Linux. If you require other platforms, you can retrieve the source and compile for yourself.
+Download the [latest release](https://github.com/UKCloud/vcd-healthcheck/releases) of the healthcheck from GitHub. Release binaries are provided for you to download for both Windows and Linux. If you require other platforms, you can retrieve the source and compile for yourself.
 
 ## Usage
 Run the command:
@@ -16,7 +16,7 @@ vcd-healthcheck
 ```
 You will be prompted to enter your Username, Password and Organisation ID. 
 
-Note: Your Username is not your email address used to login to the Skyscape Portal. You must retrieve the Username and Organisation ID to use from the [Skyscape Portal API Page](https://portal.skyscapecloud.com/user/api).
+Note: Your Username is not your email address used to login to the UKCloud Portal. You must retrieve the Username and Organisation ID to use from the [UKCloud Portal API Page](https://portal.ukcloud.com/user/api).
 
 Optionally, you can set your user credentials as the following environment variables to prevent being prompted.
 ```
@@ -33,9 +33,9 @@ The healthcheck script will search for all VMs accessible to the user account yo
 License and Authors
 -------------------
 Authors:
-  * Rob Coward (rcoward@skyscapecloud.com)
+  * Rob Coward (rcoward@ukcloud.com)
 
-Copyright 2016 Skyscape Cloud Services
+Copyright 2016 UKCloud
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

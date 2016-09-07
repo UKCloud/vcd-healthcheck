@@ -105,7 +105,7 @@ func main() {
     Org, _ = reader.ReadString('\n')
   }
 
-  fmt.Printf("Skyscape Cloud Service vCloud Healthcheck (%s)\n", VERSION)
+  fmt.Printf("UKCloud vCloud Healthcheck (%s)\n", VERSION)
 
   config := Config{
         User:     strings.TrimSpace(User),
